@@ -26,7 +26,7 @@ public class AvengerCodename implements FindDataCodename {
     final AvengersOutput avengersOutput = this.convertJsonToType(response.getBody());
 
     assert avengersOutput != null;
-    return avengersOutput.getVingadores().stream().map(avenger -> Codename.createWith(avenger.getCodinome(), Group.VINGADORES)).toList();
+    return avengersOutput.getVingadores().stream().map(avenger -> Codename.createWith(avenger.getCodinome(), Group.AVENGERS)).toList();
   }
 
   private AvengersOutput convertJsonToType(final String json) {

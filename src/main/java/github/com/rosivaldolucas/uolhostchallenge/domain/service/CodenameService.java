@@ -19,11 +19,11 @@ public class CodenameService {
   }
 
   public List<Codename> findAll(final Group group) {
-    if (group.equals(Group.VINGADORES)) {
+    if (group.equals(Group.AVENGERS)) {
       final FindDataCodename avengerCodename = new AvengerCodename(this.clientRestTemplate);
 
       return avengerCodename.findAll();
-    } else if (group.equals(Group.LIGA_DA_JUSTICA)) {
+    } else if (group.equals(Group.JUSTICE_LEAGUE)) {
       final FindDataCodename leagueOfJusticeCodename = new LeagueOfJusticeCodename(this.clientRestTemplate);
 
       return leagueOfJusticeCodename.findAll();

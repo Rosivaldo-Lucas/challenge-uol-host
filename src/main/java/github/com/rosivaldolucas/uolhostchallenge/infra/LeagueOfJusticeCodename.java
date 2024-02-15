@@ -26,7 +26,7 @@ public class LeagueOfJusticeCodename implements FindDataCodename {
     final LeagueOfJusticeOutput leagueOfJusticeOutput = this.convertXmlToType(response.getBody());
 
     assert leagueOfJusticeOutput != null;
-    return leagueOfJusticeOutput.getCodinomes().stream().map(league -> Codename.createWith(league, Group.LIGA_DA_JUSTICA)).toList();
+    return leagueOfJusticeOutput.getCodinomes().stream().map(league -> Codename.createWith(league, Group.JUSTICE_LEAGUE)).toList();
   }
 
   private LeagueOfJusticeOutput convertXmlToType(final String xml) {
