@@ -1,10 +1,13 @@
 package github.com.rosivaldolucas.uolhostchallenge.domain.service;
 
 import github.com.rosivaldolucas.uolhostchallenge.api.CreateNewPlayerInput;
-import github.com.rosivaldolucas.uolhostchallenge.domain.Player;
+import github.com.rosivaldolucas.uolhostchallenge.domain.entity.Codename;
+import github.com.rosivaldolucas.uolhostchallenge.domain.entity.Player;
 import github.com.rosivaldolucas.uolhostchallenge.domain.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 @Service
@@ -23,13 +26,30 @@ public class PlayerService {
     return this.playerRepository.findAll();
   }
 
-  public void create(final CreateNewPlayerInput input) {
-    final String playerCodename = this.codenameService.find(input.group());
+  public String create(final CreateNewPlayerInput input) {
+    final List<Codename> codenames = this.codenameService.findAll(input.group());
+
+    final List<Codename> availableCodenames = codenames.stream()
+            .filter(codename -> this.playerRepository.findByCodename(codename.getCodename()).isEmpty()).toList();
+
+    final Codename codename = this.chooseRandomCodename(availableCodenames);
 
     final Player newPlayer = Player
-            .createWith(input.name(), input.email(), input.phone(), playerCodename, input.group());
+            .createWith(input.name(), input.email(), input.phone(), codename);
 
     this.playerRepository.save(newPlayer);
+
+    return codename.getCodename();
+  }
+
+  private Codename chooseRandomCodename(final List<Codename> codenames) {
+    if (codenames == null || codenames.isEmpty()) {
+      throw new IllegalArgumentException("the list cannot be null or empty");
+    }
+
+    int randomIndex = new Random().nextInt(codenames.size());
+
+    return codenames.get(randomIndex);
   }
 
 }

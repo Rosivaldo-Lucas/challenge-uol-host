@@ -1,6 +1,6 @@
 package github.com.rosivaldolucas.uolhostchallenge.api;
 
-import github.com.rosivaldolucas.uolhostchallenge.domain.Player;
+import github.com.rosivaldolucas.uolhostchallenge.domain.entity.Player;
 import github.com.rosivaldolucas.uolhostchallenge.domain.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,10 +31,10 @@ public class PlayerController {
   }
 
   @PostMapping
-  public ResponseEntity<Void> create(@RequestBody final CreateNewPlayerInput input) {
-    this.playerService.create(input);
+  public ResponseEntity<String> create(@RequestBody final CreateNewPlayerInput input) {
+    final String s = this.playerService.create(input);
 
-    return ResponseEntity.status(HttpStatus.CREATED).build();
+    return ResponseEntity.status(HttpStatus.CREATED).body(s);
   }
 
 }

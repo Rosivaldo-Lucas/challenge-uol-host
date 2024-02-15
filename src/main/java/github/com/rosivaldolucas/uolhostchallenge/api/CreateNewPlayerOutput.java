@@ -1,6 +1,6 @@
 package github.com.rosivaldolucas.uolhostchallenge.api;
 
-import github.com.rosivaldolucas.uolhostchallenge.domain.Player;
+import github.com.rosivaldolucas.uolhostchallenge.domain.entity.Player;
 import github.com.rosivaldolucas.uolhostchallenge.domain.enums.Group;
 
 public record CreateNewPlayerOutput(
@@ -15,7 +15,7 @@ public record CreateNewPlayerOutput(
   public static CreateNewPlayerOutput create(final Player player) {
     return new CreateNewPlayerOutput(
             player.getId(), player.getName(), player.getEmail(),
-            player.getPhone(), player.getCodinome(), player.getGroup()
+            player.getPhone(), player.getCodename().getCodename(), player.getCodename().getGroup()
     );
   }
 
