@@ -4,6 +4,7 @@ import github.com.rosivaldolucas.uolhostchallenge.client.CodenameClient;
 import github.com.rosivaldolucas.uolhostchallenge.client.CodenameDTO;
 import github.com.rosivaldolucas.uolhostchallenge.client.CodenameFactory;
 import github.com.rosivaldolucas.uolhostchallenge.dto.CreatePlayerDTO;
+import github.com.rosivaldolucas.uolhostchallenge.dto.PlayerResponseDTO;
 import github.com.rosivaldolucas.uolhostchallenge.entity.Player;
 import github.com.rosivaldolucas.uolhostchallenge.enums.CodenameGroup;
 import github.com.rosivaldolucas.uolhostchallenge.repository.PlayerRepository;
@@ -22,6 +23,16 @@ public class PlayerService {
     public PlayerService(PlayerRepository playerRepository, CodenameFactory codenameFactory) {
         this.playerRepository = playerRepository;
         this.codenameFactory = codenameFactory;
+    }
+
+    public List<PlayerResponseDTO> list() {
+        return this.playerRepository.findAll()
+                .stream()
+                .map(player -> new PlayerResponseDTO(
+                        player.getId(), player.getName(), player.getEmail(), player.getPhoneNumber(),
+                        player.getCodename(), player.getCodenameGroup())
+                )
+                .toList();
     }
 
     public void create(CreatePlayerDTO createPlayerDTO) {
