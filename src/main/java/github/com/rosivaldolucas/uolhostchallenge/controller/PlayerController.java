@@ -22,14 +22,13 @@ public class PlayerController {
     @GetMapping
     public ResponseEntity<List<PlayerResponseDTO>> list() {
         List<PlayerResponseDTO> playerList = this.playerService.list();
-
         return ResponseEntity.status(HttpStatus.OK).body(playerList);
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody CreatePlayerDTO createPlayerDTO) {
-        this.playerService.create(createPlayerDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+    public ResponseEntity<PlayerResponseDTO> create(@RequestBody CreatePlayerDTO createPlayerDTO) {
+        PlayerResponseDTO playerResponseDTO = this.playerService.create(createPlayerDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(playerResponseDTO);
     }
 
 }

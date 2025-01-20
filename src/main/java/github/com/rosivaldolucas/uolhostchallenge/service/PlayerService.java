@@ -35,7 +35,7 @@ public class PlayerService {
                 .toList();
     }
 
-    public void create(CreatePlayerDTO createPlayerDTO) {
+    public PlayerResponseDTO create(CreatePlayerDTO createPlayerDTO) {
         this.playerRepository
                 .findByEmail(createPlayerDTO.email())
                 .ifPresent((player -> {
@@ -50,6 +50,11 @@ public class PlayerService {
         );
 
         this.playerRepository.save(player);
+
+        return new PlayerResponseDTO(
+                player.getId(), player.getName(), player.getEmail(), player.getPhoneNumber(),
+                player.getCodename(), player.getCodenameGroup()
+        );
     }
 
     private CodenameDTO getCodename(CodenameGroup codenameGroup) {
