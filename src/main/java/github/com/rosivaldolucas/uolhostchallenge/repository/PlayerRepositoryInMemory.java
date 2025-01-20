@@ -1,12 +1,14 @@
 package github.com.rosivaldolucas.uolhostchallenge.repository;
 
 import github.com.rosivaldolucas.uolhostchallenge.entity.Player;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class PlayerRepositoryInMemory implements PlayerRepository {
 
     private final List<Player> players = new ArrayList<>();

@@ -1,11 +1,9 @@
 package github.com.rosivaldolucas.uolhostchallenge.entity;
 
 import github.com.rosivaldolucas.uolhostchallenge.enums.CodenameGroup;
-import lombok.Getter;
 
 import java.util.UUID;
 
-@Getter
 public class Player {
 
     private final UUID id;
@@ -24,4 +22,27 @@ public class Player {
         this.codenameGroup = codenameGroup;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getCodename() {
+        return codename;
+    }
+
+    public CodenameGroup getCodenameGroup() {
+        return codenameGroup;
+    }
 }
