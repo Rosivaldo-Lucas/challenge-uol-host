@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository
+//@Repository
 public class PlayerRepositoryInMemory implements PlayerRepository {
 
     private final List<Player> players = new ArrayList<>();

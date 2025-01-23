@@ -2,9 +2,10 @@ package github.com.rosivaldolucas.uolhostchallenge.entity;
 
 import github.com.rosivaldolucas.uolhostchallenge.enums.CodenameGroup;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Player {
+public class Player implements Serializable {
 
     private final UUID id;
     private String name;
@@ -13,6 +14,15 @@ public class Player {
     private String codename;
     private CodenameGroup codenameGroup;
 
+    public Player(UUID id, String name, String email, String phoneNumber, String codename, CodenameGroup codenameGroup) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.codename = codename;
+        this.codenameGroup = codenameGroup;
+    }
+
     public Player(String name, String email, String phoneNumber, String codename, CodenameGroup codenameGroup) {
         this.id = UUID.randomUUID();
         this.name = name;
@@ -20,6 +30,11 @@ public class Player {
         this.phoneNumber = phoneNumber;
         this.codename = codename;
         this.codenameGroup = codenameGroup;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s;%s;%s;%s;%s;%s", id.toString(), name, email, phoneNumber, codename, codenameGroup.toString());
     }
 
     public UUID getId() {
