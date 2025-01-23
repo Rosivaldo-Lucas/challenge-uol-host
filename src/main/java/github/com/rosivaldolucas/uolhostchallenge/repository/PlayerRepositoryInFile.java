@@ -44,11 +44,6 @@ public class PlayerRepositoryInFile implements PlayerRepository {
     }
 
     @Override
-    public Optional<Player> findById(UUID playerId) {
-        return Optional.empty();
-    }
-
-    @Override
     public Optional<Player> findByEmail(String email) {
         File file = new File(PATH_FILE_PLAYERS);
 
@@ -84,16 +79,6 @@ public class PlayerRepositoryInFile implements PlayerRepository {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void update(Player player) {
-
-    }
-
-    @Override
-    public void deleteById(UUID playerId) {
-
     }
 
 }
